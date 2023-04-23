@@ -14,8 +14,8 @@ class WebdriverInterface:
 
     def auth(self):
         try:
-            username = os.getenv('USERNAME', 'username not defined')
-            password = os.getenv('PASSWORD', 'password not defined')
+            username = os.getenv('SRLT_USERNAME', 'username not defined')
+            password = os.getenv('SRLT_PASSWORD', 'password not defined')
             self.driver.get(url=self.URL)
             time.sleep(5)
             login_input = self.driver.find_element(By.ID, 'username')
