@@ -1,16 +1,25 @@
 from webdriver_interface import WebdriverInterface
 
 import os
+import sys
 
 
-def run():
-    wd_path = os.getenv('WD_PATH', 'wd_path not defined')
-    wi = WebdriverInterface(wd_path)
-    wi.auth()
+def run(wd_i):
     while True:
         rma_number = input('Type RMA Number')
-        wi.make_tcc_confirm(rma_number)
+        wd_i.make_tcc_confirm(rma_number)
+
+
+def main():
+    wi = WebdriverInterface(os.getenv('WD_PATH', 'wd_path not defined'))
+    wi.auth()
+
+    try:
+        run(wi)
+    except KeyboardInterrupt:
+        wi.close_and_quit()
+        sys.exit(130)
 
 
 if __name__ == "__main__":
-    run()
+    main()

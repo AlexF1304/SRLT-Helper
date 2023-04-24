@@ -10,7 +10,10 @@ class WebdriverInterface:
     URL = "https://srlt.msi.com/"
 
     def __init__(self, path):
-        self.driver = webdriver.Chrome(service=Service(executable_path=path))
+        try:
+            self.driver = webdriver.Chrome(service=Service(executable_path=path))
+        except Exception as e:
+            print(e)
 
     def auth(self):
         try:
