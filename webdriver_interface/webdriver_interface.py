@@ -9,9 +9,9 @@ class WebdriverInterface:
 
     URL = "https://srlt.msi.com/"
 
-    def __init__(self, path):
+    def __init__(self):
         try:
-            self.driver = webdriver.Chrome(service=Service(executable_path=path))
+            self.driver = webdriver.Chrome(service=Service(executable_path=os.getenv('WD_PATH', 'wd_path not defined')))
         except Exception as e:
             print(e)
 
@@ -39,6 +39,11 @@ class WebdriverInterface:
             print(e)
             return False
         return True
+
+    def run_tcc(self):
+        while True:
+            rma_number = input('Type RMA Number')
+            self.make_tcc_confirm(rma_number)
 
     def make_tcc_confirm(self, rma_number):
         try:
