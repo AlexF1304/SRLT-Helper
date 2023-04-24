@@ -90,17 +90,11 @@ class WebdriverInterface:
         match rma_number[:3].upper():
             case "RAU":
                 rma_service_type = 0
-            case "RBV4":
+            case "RBV" | "DBV":
                 rma_service_type = 1
-            case "RP4":
+            case "RP4" | "DP4":
                 rma_service_type = 2
-            case "RPW":
-                rma_service_type = 3
-            case "DBV4":
-                rma_service_type = 1
-            case "DP4":
-                rma_service_type = 2
-            case "DPW":
+            case "RPW" | "DPW":
                 rma_service_type = 3
             case _:
                 raise Exception('Wrong RMA Number')
