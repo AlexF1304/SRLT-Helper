@@ -29,12 +29,6 @@ class WebdriverInterface:
             login_input.send_keys(password)
             time.sleep(3)
             self.driver.find_element(By.ID, 'submit').click()  # submit_button
-            self.driver.get('https://srlt.msi.com///Login/BrickHome?pid=901&sid=90108&')  # brick_home_button
-            time.sleep(3)
-            self.driver.get('https://srlt.msi.com/iFramePage/ASP_First_Page')  # asp_repair_v3_button
-            time.sleep(3)
-            self.driver.find_element(By.ID, 's2id_rcSiteName').click()  # pop-up_window
-            time.sleep(3)
         except Exception as e:
             print(e)
             return False
@@ -47,6 +41,10 @@ class WebdriverInterface:
 
     def make_tcc_confirm(self, rma_number):
         try:
+            self.driver.get('https://srlt.msi.com/iFramePage/ASP_First_Page')  # asp_repair_v3_button
+            time.sleep(3)
+            self.driver.find_element(By.ID, 's2id_rcSiteName').click()  # pop-up_window
+            time.sleep(3)
             # asp_choose
             self.driver.find_elements(By.CLASS_NAME, 'select2-result-label')[self.get_service_type(rma_number)].click()
 
@@ -73,7 +71,7 @@ class WebdriverInterface:
         except Exception as e:
             print(e)
             return False
-        time.sleep(60)
+        time.sleep(10)
         return True
 
     def close_and_quit(self):
