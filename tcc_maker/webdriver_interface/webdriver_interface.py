@@ -36,8 +36,8 @@ class WebdriverInterface:
 
     def run_tcc(self):
         while True:
-            rma_number = input('Type RMA Number')
-            self.make_tcc_confirm(rma_number)
+            for rma_number in input('Type RMA Numbers: ').split(','):
+                self.make_tcc_confirm(rma_number)
 
     def make_tcc_confirm(self, rma_number):
         try:
@@ -97,3 +97,7 @@ class WebdriverInterface:
             case _:
                 raise Exception('Wrong RMA Number')
         return rma_service_type
+
+
+if __name__ == '__main__':
+    print(WebdriverInterface.get_service_type('RBV4-23608006'))
